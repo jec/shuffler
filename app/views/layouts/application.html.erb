@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Shuffler" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="banner">
+      <span class="title">Shuffler</span>
+      <span class="session-links">
+        <% if user_signed_in? %>
+          <span class="log-out">
+            <%= form_with url: destroy_user_session_path, method: :delete do |form| %>
+              <%= form.submit "Log Out" %>
+            <% end %>
+          </span>
+        <% else %>
+          <span><%= link_to "Log In", new_user_session_path %></span>
+          <span><%= link_to "Sign Up", new_user_registration_path %></span>
+        <% end %>
+      </span>
+    </div>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>
