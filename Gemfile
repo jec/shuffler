@@ -36,7 +36,7 @@ gem "bootsnap", require: false
 
 gem "devise", "~> 4.9"
 gem "dotenv", "~> 3.1"
-gem "jwt", "~> 2.9"
+gem "jwt", "~> 2.10"
 
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
